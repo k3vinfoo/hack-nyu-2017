@@ -1,2 +1,2 @@
-# hack-nyu-2017
+# HACKNYU 2017
 hack nyu 2017 project 

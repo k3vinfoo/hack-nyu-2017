@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(87, 6, 140);
+    background-color: #E9E9E9;
 }
 
 #content {
@@ -19,13 +19,15 @@ body {
 .formSignin, .formSignUp {
 	padding-top: 2em;
 	margin: 0 auto;
-	width: 40%;
+	width: 80%;
 }
 
 .btn-custom {
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	background-color: rgb(87, 6, 140);
+	border-color: white;
+	border: none;
 }
 
 .btn-custom:hover {
@@ -34,10 +36,14 @@ body {
 	border: none;
 }
 
+.btn-primary {
+	
+}
 
-header h1 {
+h1 {
 	text-align: center;
-	color: green;
+	color: rgb(87, 6, 140);
+	font-weight: bold;
 }
 
 header {

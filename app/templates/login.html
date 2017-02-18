@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='static/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='/static/style.css')}}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
@@ -24,7 +24,7 @@
             <header>
                 <h1>NYU Go</h1>
             </header>
-            <form action = "/test" method = "POST" class="formSignin">
+            <form action = "/test" method = "POST" class="form-custom formSignin">
                 <p>
                     <label for="inputNID" class="sr-only">NET ID</label><input type="inputNID" name="inputNID" id="inputNID" class="form-control" placeholder="NET ID" required autofocus>
                 </p>

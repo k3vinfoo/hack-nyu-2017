@@ -1,1 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>NYU Go</title>
 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+
+</head>
+
+{% block body %}
+{% if session['logged_in'] %}
+    <div id = "content">
+        {% else %}
+        <div id = "form">
+            <header>
+                <h1>NYU Go</h1>
+            </header>
+            <form action = "/test" method = "POST" class="formSignin">
+                <p>
+                    <label for="inputNID" class="sr-only">NET ID</label><input type="inputNID" name="inputNID" id="inputNID" class="form-control" placeholder="NetID" required autofocus>
+                </p>
+                <p>
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required>
+                </p>
+                <p>
+                    <button id="btnLogIn" class="btn-custom btn btn-md btn-primary btn-block" type="submit" value = "Log in">Login</button>
+                </p>
+                <p>
+                    <button id="btnRegister" class="btn-custom btn btn-md btn-primary btn-block" type="button">Register</button>
+                </p>
+            </form>
+            {% endif %}
+            {% endblock %}
+        </div>
+    </div>
+</body>

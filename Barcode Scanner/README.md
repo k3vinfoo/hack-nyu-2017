@@ -1,1 +1,5 @@
-# nate0203.github.io
+# Barcode Scanner
+
+Uses JavaScript and HTML
+Scans barcodes as static images.
+

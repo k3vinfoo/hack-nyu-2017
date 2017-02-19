@@ -17,7 +17,14 @@
         </p>
         <canvas id="canvas" width="2000" height="1500" style="width: 320px; height: 240px;"></canvas>
     </form>
-    <script src="barcode.js"></script>
+    <div id="info"></div>
+    <!-- <form action="/__init__.py" method='GET'>
+        <input type="hidden" id="barcode_isbn" name="">
+        <br>
+        <input type="submit" value="Purchase">
+    </form> -->
+    <!-- <script src="barcode.js"></script> -->
+    <script type="text/javascript" src="{{ url_for('static', filename='barcode.js') }}"></script>
     <script>
     try {
 
@@ -40,12 +47,13 @@
                 var line = barcode.scan();
 
                 if (line) {
-
+                    // Barcode found!
+                    document.getElementById('info').innerHTML = line.isbn;
                     document.getElementById('isbn').innerHTML = line.isbn;
+                    document.getElementById('bc').value = line.isbn;
                     barcode.print(line);
-
                 } else {
-                    document.getElementById('isbn').innerHTML = 'Sorry, could not find barcode… please try again';
+                    document.getElementById('isbn').innerHTML = 'Sorry, could not find barcode, please try again';
                 }
             };
 
@@ -56,6 +64,16 @@
         alert(e);
     }
     </script>
+    <!-- <form action="/__init__.py" method="GET">
+        Project file path:
+         <input type="hidden" name="barcode_isbn" id="barcode_isbn">
+        <br>
+        <input type="submit" value="Submit">
+    </form> -->
+    <form action='/p' method='POST'>
+        <input type="text" name="bc" id="bc" readonly="readonly">
+        <input type="submit" value="Purchase">
+    </form>
 </body>
 
 </html>

@@ -68,6 +68,13 @@ def addRegion():
     findthing(request.form['bc'], userid)
     return render_template('camera.html')
 
+@app.route('/purchases', methods=['POST'])
+def show_purchases():
+    history = connect_db(purchasedb)
+    history_query = history.execute('SELECT * FROM purchases WHERE userid = ?', (userid,))
+    total = 0
+    return render_template('purchases.html', purchases = history_query.fetchall(), total = total)
+
 def charge_account(item_cost, netid):
     account = connect_db(peopledb)
     person_query = account.execute('SELECT amount FROM reps WHERE rep_name = ?', (netid,))
@@ -80,7 +87,7 @@ def findthing (barcodenum, netid):
     store = connect_db(itemdb)
     itemquery = store.execute('SELECT cost, item_name FROM items WHERE barcode = ?', (barcodenum,))
     item = itemquery.fetchone()
-    purchase_history(netid, item[1], item[0])
+    purchase_history(userid, item[1], item[0])
     if item is None:
         print("Item not found")
     else:

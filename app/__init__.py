@@ -78,6 +78,7 @@ def charge_account(item_cost, netid):
 
 def findthing (barcodenum, netid):
     store = connect_db(itemdb)
+    print("___", barcodenum)
     itemquery = store.execute('SELECT cost, item_name FROM items WHERE barcode = ?', (barcodenum,))
     item = itemquery.fetchone()
     print("@@@", item[1], item[0])

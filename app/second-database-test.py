@@ -14,5 +14,5 @@ with con:
     cur = con.cursor()
 
     cur.execute("DROP TABLE IF EXISTS reps")
-    cur.execute("CREATE TABLE reps(rep_name TEXT, password TEXT, amount REAL)")
+    cur.execute("CREATE TABLE reps(rep_name TEXT, password TEXT, balance REAL)")
     cur.executemany("INSERT INTO reps VALUES(?, ?, ?)", people)

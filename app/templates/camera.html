@@ -2,28 +2,31 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <title>Barcode</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 
-<body style="margin: 0; background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#eee), to(#fff)) no-repeat; font-size: 13px;">
-    <form id="form">
-        <div style="background-color: #fff; border-bottom: 1px solid #ddd;">
-            <input type="file" id="file" style="width: 280px; line-height: 18px; padding: 20px;" />
+<body>
+	<header align="middle">
+         <img src="static/NYUgoLogo.png" width="70%" height="70%" align="middle">
+    </header>
+    <form id="form" class = "formSignUp" align = "middle">
+        <div style="background: none; border-bottom: 1px solid #ddd;text-align:center;color:black;text-align:center;">
+            <input type="file" id="file"/>
         </div>
-        <p id="isbn" style="font-family: Helvetica, sans-serif; width: 320px; line-height: 18px; padding: 0; text-align: center;">
-            Take a picture of the barcode
+        <p id="isbn" style="text-align: center;">
         </p>
         <canvas id="canvas" width="2000" height="1500" style="width: 320px; height: 240px;"></canvas>
     </form>
-    <div id="info"></div>
-    <!-- <form action="/__init__.py" method='GET'>
-        <input type="hidden" id="barcode_isbn" name="">
-        <br>
-        <input type="submit" value="Purchase">
-    </form> -->
-    <!-- <script src="barcode.js"></script> -->
+    <center> <div id="info"></div> </center> 
+    
     <script>
 	var Barcode = function (context, width, height) {
 		this.context = context;
@@ -358,7 +361,7 @@
                     document.getElementById('info').innerHTML = line.isbn;
                     document.getElementById('isbn').innerHTML = line.isbn;
                     document.getElementById('bc').value = line.isbn;
-                    barcode.print(line);
+                   // barcode.print(line);
                 } else {
                     document.getElementById('isbn').innerHTML = 'Sorry, could not find barcode, please try again';
                 }
@@ -371,14 +374,9 @@
         alert(e);
     }
     </script>
-    <!-- <form action="/__init__.py" method="GET">
-        Project file path:
-         <input type="hidden" name="barcode_isbn" id="barcode_isbn">
-        <br>
-        <input type="submit" value="Submit">
-    </form> -->
-    <form action="/p" method="POST">
-        <input type="text" name="bc" id="bc" readonly>
+    
+    <form action="/p" method="POST" style = "text-align:center;">
+    	<input type="text" name="bc" id="bc" readonly> 
         <input type="submit" value="Purchase">
     </form>
 </body>

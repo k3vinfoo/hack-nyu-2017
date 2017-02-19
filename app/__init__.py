@@ -81,7 +81,6 @@ def findthing (barcodenum, netid):
     print("___", barcodenum)
     itemquery = store.execute('SELECT cost, item_name FROM items WHERE barcode = ?', (barcodenum,))
     item = itemquery.fetchone()
-    print("@@@", item[1], item[0])
     purchase_history(netid, item[1], item[0])
     if item is None:
         print("Item not found")
@@ -89,7 +88,6 @@ def findthing (barcodenum, netid):
         charge_account(item[0], netid)
 
 def purchase_history(netid, name, cost):
-    print("^^^lakm")
     transactions = connect_db(purchasedb)
     transaction_query = transactions.execute('INSERT INTO purchases VALUES (?, ?, ?)', (netid, name, cost))
     transactions.commit()

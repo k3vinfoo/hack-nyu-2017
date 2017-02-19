@@ -3,6 +3,7 @@ import sys
 
 item = (
     ('7572000081', 'Water', 8.13),
+    ('7572000082', 'Soda', 1.4),
 )
 
 con = lite.connect('item.db')

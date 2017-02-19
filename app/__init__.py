@@ -10,6 +10,7 @@ from flask_login import LoginManager, UserMixin, login_required, login_user, log
 
 peopledb = "app/people.db"
 itemdb = "app/item.db"
+purchasedb = "app/purchase.db"
 
 app = Flask(__name__) 
 app.config.from_object(__name__)
@@ -67,16 +68,24 @@ def charge_account(item_cost, netid):
     account.execute('UPDATE reps SET amount = ? WHERE rep_name = ?', (new_balance, netid))
     account.commit()
 
-def findItem(barcodenum, netid):
+def findthing (barcodenum, netid):
     store = connect_db(itemdb)
-    itemquery = store.execute('SELECT cost FROM items WHERE barcode = ?', (barcodenum,))
-    item_cost = itemquery.fetchone()
-    if item_cost is None:
+    itemquery = store.execute('SELECT cost, item_name FROM items WHERE barcode = ?', (barcodenum,))
+    item = itemquery.fetchone()
+    purchase_history(netid, item[1], item[0])
+    if item is None:
         print("Item not found")
     else:
-        charge_account(item_cost[0], netid)
+        charge_account(item[0], netid)
 
-findItem("7572000081", 'a')
+def purchase_history(netid, name, cost):
+    transactions = connect_db(purchasedb)
+    transaction_query = transactions.execute('INSERT INTO purchases VALUES (?, ?, ?)', (netid, name, cost))
+    transactions.commit()
+    print("helpmepls")
+
+findthing("7572000081", 'a')
+findthing("7572000082", 'a')
 
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)

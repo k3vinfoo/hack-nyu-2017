@@ -1,4 +1,6 @@
-
+* {
+	background-color: none;
+}
 body {
 	top:0px;
     background-color: #E9E9E9;
@@ -20,7 +22,7 @@ body {
 }
 
 #form {
-
+	background-color: #E9E9E9;
 	height: 100%;
 }
 

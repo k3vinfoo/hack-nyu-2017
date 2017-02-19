@@ -58,8 +58,15 @@ def user():
     else:
         # Exists
         print("success!")
+        global userid
+        userid = user[0]
         return render_template('camera.html')
 
+# Send barcode to Database
+@app.route('/p', methods=['POST'])
+def addRegion():
+    findthing(request.form['bc'], userid)
+    return render_template('camera.html')
 
 def charge_account(item_cost, netid):
     account = connect_db(peopledb)
@@ -69,26 +76,26 @@ def charge_account(item_cost, netid):
     account.execute('UPDATE reps SET amount = ? WHERE rep_name = ?', (new_balance, netid))
     account.commit()
 
-@app.route('/p', methods=['POST'])
-def findthing (netid):
-    barcodenum = request.form['bc']
-    print("RECIEVED!!!")
-    print( request.form['bc'])
+def findthing (barcodenum, netid):
     store = connect_db(itemdb)
     itemquery = store.execute('SELECT cost, item_name FROM items WHERE barcode = ?', (barcodenum,))
     item = itemquery.fetchone()
+    print("@@@", item[1], item[0])
     purchase_history(netid, item[1], item[0])
     if item is None:
         print("Item not found")
     else:
         charge_account(item[0], netid)
-    return render_template('camera.html')
 
 def purchase_history(netid, name, cost):
+    print("^^^lakm")
     transactions = connect_db(purchasedb)
     transaction_query = transactions.execute('INSERT INTO purchases VALUES (?, ?, ?)', (netid, name, cost))
     transactions.commit()
     print("helpmepls")
+
+# findthing("7572000081", 'a')
+# findthing("7572000082", 'a')
 
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)
